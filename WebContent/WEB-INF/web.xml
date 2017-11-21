@@ -19,6 +19,7 @@
     <servlet-name>AddCustomerServlet</servlet-name>
     <url-pattern>/AddCustomerServlet</url-pattern>
   </servlet-mapping>
+
     <filter>
     <filter-name>encodeFilter</filter-name>
     <filter-class>com.anywell.web.filter.GenericEncodingFilter</filter-class>
@@ -27,4 +28,24 @@
     <filter-name>encodeFilter</filter-name>
     <url-pattern>/*</url-pattern>
   </filter-mapping>
+  <servlet>
+    <description></description>
+    <display-name>CustomerListServlet</display-name>
+    <servlet-name>CustomerListServlet</servlet-name>
+    <servlet-class>com.anywell.web.CustomerListServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>CustomerListServlet</servlet-name>
+    <url-pattern>/CustomerListServlet</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>AddLinkManServlet</display-name>
+    <servlet-name>AddLinkManServlet</servlet-name>
+    <servlet-class>com.anywell.web.AddLinkManServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>AddLinkManServlet</servlet-name>
+    <url-pattern>/AddLinkManServlet</url-pattern>
+  </servlet-mapping>
 </web-app>

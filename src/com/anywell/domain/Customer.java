@@ -1,5 +1,8 @@
 package com.anywell.domain;
 
+import java.util.HashSet;
+import java.util.Set;
+
 public class Customer {
 	/*
 	 * CREATE TABLE `cst_customer` ( `cust_id` BIGINT(32) NOT NULL
@@ -21,6 +24,16 @@ public class Customer {
 	private String cust_linkman;
 	private String cust_phone;
 	private String cust_mobile;
+
+	private Set<LinkMan> linkMans = new HashSet<>();
+
+	public Set<LinkMan> getLinkMans() {
+		return linkMans;
+	}
+
+	public void setLinkMans(Set<LinkMan> linkMans) {
+		this.linkMans = linkMans;
+	}
 
 	public Long getCust_id() {
 		return cust_id;

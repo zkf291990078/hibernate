@@ -11,28 +11,29 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.apache.commons.beanutils.BeanUtils;
 
-import com.anywell.domain.Customer;
-import com.anywell.services.CustomerService;
-import com.anywell.services.impl.CustomerServiceImpl;
+import com.anywell.domain.LinkMan;
+import com.anywell.services.LinkManService;
+import com.anywell.services.impl.LinkManServletImpl;
 
 /**
- * Servlet implementation class AddCustomerServlet
+ * Servlet implementation class AddLinkManServlet
  */
-public class AddCustomerServlet extends HttpServlet {
+public class AddLinkManServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
+	private LinkManService service=new LinkManServletImpl();
 
 	/**
-	 * @see HttpServlet#HttpServlet()
+	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
+	 *      response)
 	 */
-	private CustomerService service = new CustomerServiceImpl();
-
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		Map<String, String[]> map = request.getParameterMap();
-		Customer customer = new Customer();
+		LinkMan linkMan = new LinkMan();
 		try {
-			BeanUtils.populate(customer, map);
+			BeanUtils.populate(linkMan, map);
+			 service.save(linkMan);
 		} catch (IllegalAccessException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -40,8 +41,7 @@ public class AddCustomerServlet extends HttpServlet {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		service.save(customer);
-		response.sendRedirect(request.getContextPath()+"/CustomerListServlet");
+		response.sendRedirect(request.getContextPath()+"/ListLinkManServlet");
 	}
 
 	/**
