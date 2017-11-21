@@ -29,4 +29,14 @@
     <servlet-name>CustomerListServlet</servlet-name>
     <url-pattern>/CustomerListServlet</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>AddLinkManServlet</display-name>
+    <servlet-name>AddLinkManServlet</servlet-name>
+    <servlet-class>com.anywell.web.AddLinkManServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>AddLinkManServlet</servlet-name>
+    <url-pattern>/AddLinkManServlet</url-pattern>
+  </servlet-mapping>
 </web-app>

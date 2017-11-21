@@ -10,4 +10,6 @@ public interface CustomerDao {
 
 	public List<Customer> findAll();
 
+	public Customer getCustomer(long cust_id);
+
 }

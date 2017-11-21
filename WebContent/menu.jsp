@@ -157,7 +157,7 @@ A.active {
 											<TBODY>
 												<TR>
 													<TD class=menuSmall><A class=style2
-														href="linkmanServlet?method=add" target=main>－ 新增联系人</A></TD>
+														href="${pageContext.request.contextPath}/jsp/linkman/add.jsp" target=main>－ 新增联系人</A></TD>
 												</TR>
 												<TR>
 													<TD class=menuSmall><A class=style2

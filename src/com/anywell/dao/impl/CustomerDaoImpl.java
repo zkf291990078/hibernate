@@ -26,4 +26,11 @@ public class CustomerDaoImpl implements CustomerDao {
 		return criteria.list();
 	}
 
+	@Override
+	public Customer getCustomer(long cust_id) {
+		// TODO Auto-generated method stub
+		Session session=HibernateUtils.getCurrentSession();
+		return session.get(Customer.class, cust_id);
+	}
+
 }
