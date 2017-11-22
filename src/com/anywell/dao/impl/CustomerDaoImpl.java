@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.hibernate.Criteria;
 import org.hibernate.Session;
+import org.hibernate.criterion.DetachedCriteria;
 
 import com.anywell.dao.CustomerDao;
 import com.anywell.domain.Customer;
@@ -29,8 +30,16 @@ public class CustomerDaoImpl implements CustomerDao {
 	@Override
 	public Customer getCustomer(long cust_id) {
 		// TODO Auto-generated method stub
-		Session session=HibernateUtils.getCurrentSession();
+		Session session = HibernateUtils.getCurrentSession();
 		return session.get(Customer.class, cust_id);
+	}
+
+	@Override
+	public List<Customer> findAll(DetachedCriteria dc) {
+		// TODO Auto-generated method stub
+		Session session = HibernateUtils.getCurrentSession();
+		Criteria criteria = dc.getExecutableCriteria(session);
+		return criteria.list();
 	}
 
 }

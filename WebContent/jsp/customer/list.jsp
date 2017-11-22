@@ -26,7 +26,7 @@
 </HEAD>
 <BODY>
 	<FORM id="customerForm" name="customerForm"
-		action="${pageContext.request.contextPath }/customerServlet?method=list"
+		action="${pageContext.request.contextPath }/CustomerListServlet"
 		method=post>
 
 		<TABLE cellSpacing=0 cellPadding=0 width="98%" border=0>
@@ -70,7 +70,7 @@
 												<TR>
 													<TD>客户名称：</TD>
 													<TD><INPUT class=textbox id=sChannel2
-														style="WIDTH: 80px" maxLength=50 name="custName"></TD>
+														style="WIDTH: 80px" maxLength=50 name="cust_name" value="${param.cust_name}"></TD>
 
 													<TD><INPUT class=button id=sButton2 type=submit
 														value=" 筛选 " name=sButton2></TD>
