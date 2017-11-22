@@ -26,7 +26,7 @@
 </HEAD>
 <BODY>
 	<FORM id="customerForm" name="customerForm"
-		action="${pageContext.request.contextPath }/CustomerListServlet"
+		action="${pageContext.request.contextPath }/CustomerAction_list"
 		method=post>
 
 		<TABLE cellSpacing=0 cellPadding=0 width="98%" border=0>
