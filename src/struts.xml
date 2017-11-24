@@ -4,14 +4,45 @@
 	"http://struts.apache.org/dtds/struts-2.3.dtd">
 <struts>
 	<constant name="struts.devMode" value="true"></constant>
-	<package name="crm" namespace="/" extends="struts-default" >
+
+
+	<package name="crm" namespace="/" extends="struts-default">
+		<interceptors >
+			<interceptor name="myInterceptors"
+				class="com.anywell.web.interceptor.LoginInterceptor" />
+			<interceptor-stack name="myStack">
+				<interceptor-ref name="myInterceptors">
+					<param name="excludeMethods">login</param>
+				</interceptor-ref>
+				<interceptor-ref name="defaultStack"></interceptor-ref>
+			</interceptor-stack>
+		</interceptors>
+		<!-- 指定包中的默认拦截器栈 -->
+		<default-interceptor-ref name="myStack"></default-interceptor-ref>
+		<!-- 定义全局结果集 -->
+		<global-results>
+			<result name="toLogin" type="redirect" >/login.jsp</result>
+		</global-results>
+		<global-exception-mappings>
+			<!-- 如果出现java.lang.RuntimeException异常,就将跳转到名为error的结果 -->
+			<exception-mapping result="error"
+				exception="java.lang.RuntimeException"></exception-mapping>
+		</global-exception-mappings>
+
 		<action name="CustomerAction_*" class="com.anywell.web.action.CustomerAction"
 			method="{1}">
 			<result name="list">/jsp/customer/list.jsp</result>
-			<result  name="toList"  type="redirectAction">
+			<result name="toList" type="redirectAction">
 				<param name="actionName">CustomerAction_list</param>
-	             <param name="namespace">/</param>
-            </result>
-			</action>
+				<param name="namespace">/</param>
+			</result>
+		</action>
+		<action name="UserAction_*" class="com.anywell.web.action.UserAction"
+			method="{1}">
+			<result name="toHome" type="redirect">/index.htm</result>
+			<result name="error">/login.jsp</result>
+		</action>
+
+
 	</package>
 </struts>
