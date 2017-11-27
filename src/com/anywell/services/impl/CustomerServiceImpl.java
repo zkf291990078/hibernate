@@ -14,14 +14,18 @@ import com.anywell.utils.HibernateUtils;
 
 public class CustomerServiceImpl implements CustomerService {
 
-	private CustomerDao dao = new CustomerDaoImpl();
+	private CustomerDao customerDao;
+
+	public void setCustomerDao(CustomerDao customerDao) {
+		this.customerDao = customerDao;
+	}
 
 	@Override
 	public void save(Customer customer) {
 		// TODO Auto-generated method stub
 		Session session = HibernateUtils.getCurrentSession();
 		Transaction tx = session.beginTransaction();
-		dao.save(customer);
+		customerDao.save(customer);
 		tx.commit();
 	}
 
@@ -30,7 +34,7 @@ public class CustomerServiceImpl implements CustomerService {
 		// TODO Auto-generated method stub
 		Session session = HibernateUtils.getCurrentSession();
 		Transaction tx = session.beginTransaction();
-		List<Customer> customers = dao.findAll();
+		List<Customer> customers = customerDao.findAll();
 		tx.commit();
 		return customers;
 	}
@@ -40,7 +44,7 @@ public class CustomerServiceImpl implements CustomerService {
 		// TODO Auto-generated method stub
 		Session session = HibernateUtils.getCurrentSession();
 		Transaction tx = session.beginTransaction();
-		List<Customer> customers = dao.findAll(dc);
+		List<Customer> customers = customerDao.findAll(dc);
 		tx.commit();
 		return customers;
 	}

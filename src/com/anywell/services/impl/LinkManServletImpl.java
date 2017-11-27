@@ -1,7 +1,12 @@
 package com.anywell.services.impl;
 
+import javax.servlet.ServletContext;
+
+import org.apache.struts2.ServletActionContext;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
+import org.springframework.web.context.WebApplicationContext;
+import org.springframework.web.context.support.WebApplicationContextUtils;
 
 import com.anywell.dao.CustomerDao;
 import com.anywell.dao.impl.CustomerDaoImpl;
@@ -9,16 +14,37 @@ import com.anywell.domain.Customer;
 import com.anywell.domain.LinkMan;
 import com.anywell.services.LinkManDao;
 import com.anywell.services.LinkManService;
+import com.anywell.services.UserService;
 import com.anywell.utils.HibernateUtils;
 
 public class LinkManServletImpl implements LinkManService {
 
-	private CustomerDao cd = new CustomerDaoImpl();
-	private LinkManDao lmd = new LinkManDaoImpl();
+	private CustomerDao cd;
+	private LinkManDao lmd;
+
+	public CustomerDao getCd() {
+		return cd;
+	}
+
+	public void setCd(CustomerDao cd) {
+		this.cd = cd;
+	}
+
+	public LinkManDao getLmd() {
+		return lmd;
+	}
+
+	public void setLmd(LinkManDao lmd) {
+		this.lmd = lmd;
+	}
 
 	@Override
 	public void save(LinkMan linkMan) {
 		// TODO Auto-generated method stub
+		ServletContext sc = ServletActionContext.getServletContext();
+		WebApplicationContext ac = WebApplicationContextUtils.getWebApplicationContext(sc);
+		cd = (CustomerDao) ac.getBean("cd");
+		lmd = (LinkManDao) ac.getBean("lmd");
 		Session session = HibernateUtils.getCurrentSession();
 		Transaction tx = session.beginTransaction();
 		try {
